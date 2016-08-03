@@ -1,0 +1,129 @@
+#N canvas 400 343 541 394 10;
+#X obj 103 122 osc~;
+#X obj 179 122 osc~;
+#X floatatom 103 65 5 0 0 0 - - -, f 5;
+#X obj 138 105 -, f 4;
+#X floatatom 159 17 5 0 50 0 - - -, f 5;
+#X obj 139 184 dac~;
+#X obj 138 31 bng 15 250 50 0 empty empty empty 17 7 0 10 -66577 -172405
+-1;
+#X text 11 63 Base Frequency;
+#X text 56 15 Entrainment Rate;
+#N canvas 7 22 1404 852 (subpatch) 0;
+#X array elements 1e+06 float 2;
+#X coords 0 852 1 851 200 140 0;
+#X restore 169 250 graph;
+#X obj 95 250 soundfiler;
+#X msg 95 227 read /Users/mac/Desktop/elements.wav elements;
+#X floatatom 95 272 5 0 0 0 - - -, f 5;
+#X obj 16 360 dac~;
+#X obj 16 317 tabread4~ elements;
+#X obj 16 286 *~;
+#X obj 136 295 vsl 17 40 0 1 0 0 empty empty empty 0 -9 0 10 -66577
+-260550 -1 0 1;
+#X obj 16 338 *~;
+#X msg 16 211 44100;
+#X obj 16 233 /;
+#X obj 16 260 phasor~;
+#X obj 5 140 loadbang;
+#X obj 16 162 t b b;
+#X text 158 310 Sample Gain;
+#X obj 230 117 vsl 17 40 0 0.5 0 0 empty empty empty 0 -9 0 10 -66577
+-107262 -1 0 1;
+#X obj 139 160 *~;
+#X text 249 145 Beats Gain;
+#X obj 139 139 +~;
+#X obj 350 32 tgl 15 0 empty empty empty 17 7 0 10 -162280 -71224 -1
+0 1;
+#X obj 350 51 metro 1000;
+#X obj 350 73 f;
+#X obj 384 73 + 1;
+#X floatatom 350 95 5 0 0 0 - - -, f 5;
+#X msg 407 135 0;
+#X obj 407 155 s k;
+#X obj 230 88 r k;
+#X obj 136 271 r k;
+#X obj 322 15 r k;
+#X msg 319 51 0;
+#X obj 350 114 moses 3600;
+#X msg 382 300 \; pd dsp 1;
+#X msg 452 300 \; pd dsp 0;
+#X obj 452 274 bng 15 1000 50 0 empty empty empty 17 7 0 10 -66577
+-214163 -1;
+#X obj 382 272 bng 15 1000 50 0 empty empty empty 17 7 0 10 -66577
+-28073 -1;
+#X obj 452 244 r k;
+#X text 471 274 DSP OFF;
+#X text 402 272 DSP ON;
+#X text 369 32 Shut down Timer;
+#X floatatom 437 100 5 0 0 0 - - -, f 5;
+#X text 469 100 Time in s;
+#X obj 475 61 loadbang;
+#X msg 475 83 3600;
+#N canvas 779 229 405 420 user 0;
+#X text 20 3 User Manual: *DSP ON;
+#X text 19 149 2 Set base frequency - Use a resource such as http://www.lunarsight.com/freq.htm
+to find a frequency that best suits your needs.;
+#X text 19 200 3 Gain Beats Output.;
+#X text 20 276 5 Once you have your desired entrainment - set the time
+you wish to shut down the application in the number box titled Time
+in seconds. The default is 3600 seconds i.e. 1 hour. The timer switches
+the DSP OFF - so make sure to turn it back on if you wish to use it
+again.;
+#X text 20 358 6 Start the Timer and dive into your mind!;
+#X text 19 27 1 Set Entrainment Rate - between 0-50. Gamma \, 30 to
+50 Hz - High Focus Beta \, 14 to 30 Hz - General Activity Alpha \,
+8 to 14 Hz - Relaxation and Active Thought Theta \, 4 to 8 Hz - Light
+Sleep - REM - Dreaming Delta \, 0.1 to 4 Hz - Deep Sleep Sub Delta
+- Biological Conciousness;
+#X text 19 226 4 Audio File 'elements.wav' works well for Alpha Beta
+and Gamma States. For Lower States \, pure beats are recommended without
+the use of the sample.;
+#X restore 399 365 pd user manual;
+#X text 361 346 Click here for assistance.;
+#X connect 0 0 27 0;
+#X connect 1 0 27 0;
+#X connect 2 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 4 0 3 1;
+#X connect 4 0 6 0;
+#X connect 6 0 3 0;
+#X connect 10 0 12 0;
+#X connect 11 0 10 0;
+#X connect 12 0 15 1;
+#X connect 12 0 19 1;
+#X connect 14 0 17 0;
+#X connect 15 0 14 0;
+#X connect 16 0 17 1;
+#X connect 17 0 13 0;
+#X connect 17 0 13 1;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 15 0;
+#X connect 21 0 22 0;
+#X connect 22 0 18 0;
+#X connect 22 1 11 0;
+#X connect 24 0 25 1;
+#X connect 25 0 5 0;
+#X connect 25 0 5 1;
+#X connect 27 0 25 0;
+#X connect 28 0 29 0;
+#X connect 28 0 38 0;
+#X connect 29 0 30 0;
+#X connect 30 0 31 0;
+#X connect 30 0 32 0;
+#X connect 31 0 30 1;
+#X connect 32 0 39 0;
+#X connect 33 0 34 0;
+#X connect 35 0 24 0;
+#X connect 36 0 16 0;
+#X connect 37 0 28 0;
+#X connect 38 0 30 0;
+#X connect 39 1 33 0;
+#X connect 42 0 41 0;
+#X connect 43 0 40 0;
+#X connect 44 0 42 0;
+#X connect 48 0 39 1;
+#X connect 50 0 51 0;
+#X connect 51 0 48 0;
